@@ -25,19 +25,29 @@ class GalleryCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.collectionView?.registerClass(GalleryCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "GalleryCollectionViewCell")
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         configureLayout()
     }
     
-    func configureLayout() {
-        let numberOfCellsInRow: CGFloat = 4
-        let itemWidth = self.view.frame.size.width / numberOfCellsInRow
-        layout.itemSize = CGSizeMake(itemWidth - 2, itemWidth - 2)
+    private func numberOfCellsInRow() -> CGFloat {
+        if self.traitCollection.userInterfaceIdiom == .TV { return 7 }
+        if self.traitCollection.horizontalSizeClass == .Regular { return 5 }
+        return 4
+    }
+    
+    private func configureLayout() {
+        let padding: CGFloat = 1
+        let itemWidth: CGFloat = self.view.frame.size.width / numberOfCellsInRow()
+        layout.itemSize = CGSizeMake(itemWidth - padding, itemWidth - padding)
         layout.scrollDirection = UICollectionViewScrollDirection.Vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0 , bottom: 0, right: 0)
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = padding
+        layout.minimumLineSpacing = padding
+        layout.scrollDirection = .Vertical
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -50,7 +60,10 @@ class GalleryCollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: GalleryCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCollectionViewCell", forIndexPath: indexPath) as! GalleryCollectionViewCell
-        cell.image = imageStore.imageForIndex(indexPath.row)
+        cell.image = nil
+        imageStore.imageForIndex(indexPath.row) { (image) -> Void in
+            cell.image = image
+        }
         return cell
     }
     
