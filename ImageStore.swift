@@ -35,15 +35,16 @@ class ImageStore {
         "245H",
     ]
     
-    init() {
-        assets = assetNames + assetNames + assetNames + assetNames
-        assets.shuffleInPlace()
-    }
-    
     var count: Int {
         get {
             return assets.count
         }
+    }
+    
+    
+    init() {
+        assets = assetNames + assetNames + assetNames + assetNames
+        assets.shuffleInPlace()
     }
     
     func imageForIndex(index: Int) -> UIImage? {

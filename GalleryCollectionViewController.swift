@@ -16,6 +16,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     private let layout = UICollectionViewFlowLayout()
     private let padding: CGFloat = 1
 
+    
     init() {
         super.init(collectionViewLayout: layout)
     }
