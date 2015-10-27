@@ -4,15 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Gallery WatchKit App.xcscheme</key>
+		<key>iGallery.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
-		<key>Gallery.xcscheme</key>
+		<key>tvGallery.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>2</integer>
+		</dict>
+		<key>watchGallery.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -33,6 +38,36 @@
 			<true/>
 		</dict>
 		<key>83436E141BDF947900B89409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83436E461BDF94BD00B89409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83436E561BDF94BD00B89409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83436E611BDF94BD00B89409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83436E791BDFC9DC00B89409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83436E8D1BDFCA1D00B89409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83436EB31BDFCABD00B89409</key>
 		<dict>
 			<key>primary</key>
 			<true/>
