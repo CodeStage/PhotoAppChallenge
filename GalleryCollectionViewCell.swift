@@ -27,6 +27,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureLayout() {
+        if self.subviews.contains(imageView) { return } // Guard against multiple calls
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .ScaleAspectFill
@@ -43,22 +44,19 @@ class GalleryCollectionViewCell: UICollectionViewCell {
             return imageView.image
         }
         set {
-            if newValue == nil {
-                self.backgroundColor = UIColor.blackColor()
-            }
-            else
-            {
-                self.backgroundColor = randomColor()
-            }
+            self.backgroundColor = randomColor()
             imageView.image = newValue
         }
     }
-    
     
     private func randomColor() -> UIColor {
         let randomRed:CGFloat = CGFloat(drand48())
         let randomGreen:CGFloat = CGFloat(drand48())
         let randomBlue:CGFloat = CGFloat(drand48())
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+    }
+    
+    class func identifier() -> String {
+        return "GalleryCollectionViewCell"
     }
 }

@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		833078BD1BE0289500804D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078BC1BE0289500804D31 /* Assets.xcassets */; };
-		833078BE1BE0289500804D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078BC1BE0289500804D31 /* Assets.xcassets */; };
-		83436ED81BDFCB6F00B89409 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83436ED71BDFCB6F00B89409 /* ImageStore.swift */; };
-		83436ED91BDFCB6F00B89409 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83436ED71BDFCB6F00B89409 /* ImageStore.swift */; };
-		83436EE61BDFCCE400B89409 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83436EE51BDFCCE400B89409 /* GalleryCollectionViewController.swift */; };
-		83436EE71BDFCCE400B89409 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83436EE51BDFCCE400B89409 /* GalleryCollectionViewController.swift */; };
-		83436EE91BDFCE2100B89409 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83436EE81BDFCE2100B89409 /* GalleryCollectionViewCell.swift */; };
-		83436EEA1BDFCE2100B89409 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83436EE81BDFCE2100B89409 /* GalleryCollectionViewCell.swift */; };
-		83436EF21BDFD96F00B89409 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83436EF11BDFD96F00B89409 /* AppDelegate.swift */; };
-		83436EF31BDFD96F00B89409 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83436EF11BDFD96F00B89409 /* AppDelegate.swift */; };
-		83436EF71BDFDA5E00B89409 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83436EF61BDFDA5E00B89409 /* LaunchScreen.storyboard */; };
+		833078C71BE029EE00804D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C01BE029EE00804D31 /* AppDelegate.swift */; };
+		833078C81BE029EE00804D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C01BE029EE00804D31 /* AppDelegate.swift */; };
+		833078C91BE029EE00804D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* Assets.xcassets */; };
+		833078CA1BE029EE00804D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* Assets.xcassets */; };
+		833078CB1BE029EE00804D31 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */; };
+		833078CC1BE029EE00804D31 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */; };
+		833078CD1BE029EE00804D31 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C31BE029EE00804D31 /* GalleryCollectionViewController.swift */; };
+		833078CE1BE029EE00804D31 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C31BE029EE00804D31 /* GalleryCollectionViewController.swift */; };
+		833078CF1BE029EE00804D31 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C41BE029EE00804D31 /* ImageStore.swift */; };
+		833078D01BE029EE00804D31 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C41BE029EE00804D31 /* ImageStore.swift */; };
+		833078D31BE029EE00804D31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833078C61BE029EE00804D31 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,16 +34,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		833078BC1BE0289500804D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		833078C01BE029EE00804D31 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		833078C11BE029EE00804D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		833078C31BE029EE00804D31 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
+		833078C41BE029EE00804D31 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
+		833078C51BE029EE00804D31 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		833078C61BE029EE00804D31 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83436E471BDF94BD00B89409 /* tvGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		83436E521BDF94BD00B89409 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83436E7A1BDFC9DC00B89409 /* iGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		83436E881BDFC9DC00B89409 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83436ED71BDFCB6F00B89409 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
-		83436EE51BDFCCE400B89409 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
-		83436EE81BDFCE2100B89409 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
-		83436EF11BDFD96F00B89409 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83436EF61BDFDA5E00B89409 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +66,13 @@
 		83436DE41BDF947900B89409 = {
 			isa = PBXGroup;
 			children = (
-				83436ED61BDFCB4B00B89409 /* Common */,
-				83436E481BDF94BD00B89409 /* tvGallery */,
-				83436E7B1BDFC9DC00B89409 /* iGallery */,
+				833078C01BE029EE00804D31 /* AppDelegate.swift */,
+				833078C11BE029EE00804D31 /* Assets.xcassets */,
+				833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */,
+				833078C31BE029EE00804D31 /* GalleryCollectionViewController.swift */,
+				833078C41BE029EE00804D31 /* ImageStore.swift */,
+				833078C51BE029EE00804D31 /* Info.plist */,
+				833078C61BE029EE00804D31 /* LaunchScreen.storyboard */,
 				83436DEE1BDF947900B89409 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,35 +84,6 @@
 				83436E7A1BDFC9DC00B89409 /* iGallery.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		83436E481BDF94BD00B89409 /* tvGallery */ = {
-			isa = PBXGroup;
-			children = (
-				83436E521BDF94BD00B89409 /* Info.plist */,
-			);
-			path = tvGallery;
-			sourceTree = "<group>";
-		};
-		83436E7B1BDFC9DC00B89409 /* iGallery */ = {
-			isa = PBXGroup;
-			children = (
-				83436E881BDFC9DC00B89409 /* Info.plist */,
-			);
-			path = iGallery;
-			sourceTree = "<group>";
-		};
-		83436ED61BDFCB4B00B89409 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				83436EF11BDFD96F00B89409 /* AppDelegate.swift */,
-				83436ED71BDFCB6F00B89409 /* ImageStore.swift */,
-				83436EE51BDFCCE400B89409 /* GalleryCollectionViewController.swift */,
-				83436EE81BDFCE2100B89409 /* GalleryCollectionViewCell.swift */,
-				83436EF61BDFDA5E00B89409 /* LaunchScreen.storyboard */,
-				833078BC1BE0289500804D31 /* Assets.xcassets */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,7 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833078BE1BE0289500804D31 /* Assets.xcassets in Resources */,
+				833078CA1BE029EE00804D31 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,8 +174,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833078BD1BE0289500804D31 /* Assets.xcassets in Resources */,
-				83436EF71BDFDA5E00B89409 /* LaunchScreen.storyboard in Resources */,
+				833078D31BE029EE00804D31 /* LaunchScreen.storyboard in Resources */,
+				833078C91BE029EE00804D31 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,10 +186,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83436EF31BDFD96F00B89409 /* AppDelegate.swift in Sources */,
-				83436EE71BDFCCE400B89409 /* GalleryCollectionViewController.swift in Sources */,
-				83436EEA1BDFCE2100B89409 /* GalleryCollectionViewCell.swift in Sources */,
-				83436ED91BDFCB6F00B89409 /* ImageStore.swift in Sources */,
+				833078C81BE029EE00804D31 /* AppDelegate.swift in Sources */,
+				833078CE1BE029EE00804D31 /* GalleryCollectionViewController.swift in Sources */,
+				833078CC1BE029EE00804D31 /* GalleryCollectionViewCell.swift in Sources */,
+				833078D01BE029EE00804D31 /* ImageStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,10 +197,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83436EF21BDFD96F00B89409 /* AppDelegate.swift in Sources */,
-				83436EE61BDFCCE400B89409 /* GalleryCollectionViewController.swift in Sources */,
-				83436EE91BDFCE2100B89409 /* GalleryCollectionViewCell.swift in Sources */,
-				83436ED81BDFCB6F00B89409 /* ImageStore.swift in Sources */,
+				833078C71BE029EE00804D31 /* AppDelegate.swift in Sources */,
+				833078CD1BE029EE00804D31 /* GalleryCollectionViewController.swift in Sources */,
+				833078CB1BE029EE00804D31 /* GalleryCollectionViewCell.swift in Sources */,
+				833078CF1BE029EE00804D31 /* ImageStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +243,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -308,6 +283,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -321,11 +297,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				INFOPLIST_FILE = tvGallery/Info.plist;
+				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.tvGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -336,7 +313,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				INFOPLIST_FILE = tvGallery/Info.plist;
+				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.tvGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,10 +327,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = iGallery/Info.plist;
+				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.iGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -361,7 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = iGallery/Info.plist;
+				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.iGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -14,6 +14,7 @@ class GalleryCollectionViewController: UICollectionViewController {
 
     private let imageStore = ImageStore()
     private let layout = UICollectionViewFlowLayout()
+    private let padding: CGFloat = 1
 
     init() {
         super.init(collectionViewLayout: layout)
@@ -25,7 +26,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView?.registerClass(GalleryCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "GalleryCollectionViewCell")
+        self.collectionView?.registerClass(GalleryCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: GalleryCollectionViewCell.identifier())
     }
 
     override func viewWillLayoutSubviews() {
@@ -40,18 +41,10 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
     
     private func configureLayout() {
-        let padding: CGFloat = 1
         let itemWidth: CGFloat = self.view.frame.size.width / numberOfCellsInRow()
         layout.itemSize = CGSizeMake(itemWidth - padding, itemWidth - padding)
-        layout.scrollDirection = UICollectionViewScrollDirection.Vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0 , bottom: 0, right: 0)
         layout.minimumInteritemSpacing = padding
         layout.minimumLineSpacing = padding
-        layout.scrollDirection = .Vertical
-    }
-    
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -59,11 +52,8 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: GalleryCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCollectionViewCell", forIndexPath: indexPath) as! GalleryCollectionViewCell
-        cell.image = nil
-        imageStore.imageForIndex(indexPath.row) { (image) -> Void in
-            cell.image = image
-        }
+        let cell: GalleryCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(GalleryCollectionViewCell.identifier(), forIndexPath: indexPath) as! GalleryCollectionViewCell
+        cell.image = imageStore.imageForIndex(indexPath.row)
         return cell
     }
     
