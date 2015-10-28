@@ -28,7 +28,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView?.registerClass(GalleryCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: GalleryCollectionViewCell.identifier)
+        collectionView?.registerClass(GalleryCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: GalleryCollectionViewCell.identifier)
     }
 
     override func viewWillLayoutSubviews() {
@@ -37,7 +37,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.imageStore.count
+        return imageStore.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -48,8 +48,8 @@ class GalleryCollectionViewController: UICollectionViewController {
     
     // Defines how many images should be displayed in one row
     private func numberOfCellsInRow() -> CGFloat {
-        if self.traitCollection.userInterfaceIdiom == .TV { return 7 }
-        if self.traitCollection.horizontalSizeClass == .Regular { return 5 }
+        if traitCollection.userInterfaceIdiom == .TV { return 7 }
+        if traitCollection.horizontalSizeClass == .Regular { return 5 }
         return 4
     }
     

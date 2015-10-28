@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		832000831BE0E3D400A3430C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* Assets.xcassets */; };
-		832000841BE0E4DC00A3430C /* Photos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078FB1BE0D7FD00804D31 /* Photos.xcassets */; };
+		832000831BE0E3D400A3430C /* AppAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* AppAssets.xcassets */; };
+		832000841BE0E4DC00A3430C /* StockPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078FB1BE0D7FD00804D31 /* StockPhotos.xcassets */; };
 		832000881BE0EBA400A3430C /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832000851BE0EBA400A3430C /* ExtensionDelegate.swift */; };
 		8320008A1BE0EBA400A3430C /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832000871BE0EBA400A3430C /* InterfaceController.swift */; };
 		833078C71BE029EE00804D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C01BE029EE00804D31 /* AppDelegate.swift */; };
 		833078C81BE029EE00804D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C01BE029EE00804D31 /* AppDelegate.swift */; };
-		833078C91BE029EE00804D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* Assets.xcassets */; };
-		833078CA1BE029EE00804D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* Assets.xcassets */; };
+		833078C91BE029EE00804D31 /* AppAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* AppAssets.xcassets */; };
+		833078CA1BE029EE00804D31 /* AppAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* AppAssets.xcassets */; };
 		833078CB1BE029EE00804D31 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */; };
 		833078CC1BE029EE00804D31 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */; };
 		833078CD1BE029EE00804D31 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C31BE029EE00804D31 /* GalleryCollectionViewController.swift */; };
@@ -25,10 +25,10 @@
 		833078DB1BE0337A00804D31 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833078D91BE0337A00804D31 /* Interface.storyboard */; };
 		833078E41BE0337B00804D31 /* watchGalleryExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 833078E31BE0337B00804D31 /* watchGalleryExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		833078F11BE0337B00804D31 /* watchGallery.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 833078D71BE0337A00804D31 /* watchGallery.app */; };
-		833078F91BE0CF5100804D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* Assets.xcassets */; };
+		833078F91BE0CF5100804D31 /* AppAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078C11BE029EE00804D31 /* AppAssets.xcassets */; };
 		833078FA1BE0D12700804D31 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833078C41BE029EE00804D31 /* ImageStore.swift */; };
-		833078FC1BE0D7FD00804D31 /* Photos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078FB1BE0D7FD00804D31 /* Photos.xcassets */; };
-		833078FD1BE0D7FD00804D31 /* Photos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078FB1BE0D7FD00804D31 /* Photos.xcassets */; };
+		833078FC1BE0D7FD00804D31 /* StockPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078FB1BE0D7FD00804D31 /* StockPhotos.xcassets */; };
+		833078FD1BE0D7FD00804D31 /* StockPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833078FB1BE0D7FD00804D31 /* StockPhotos.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +78,7 @@
 		832000861BE0EBA400A3430C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = watchGalleryExtension/Info.plist; sourceTree = SOURCE_ROOT; };
 		832000871BE0EBA400A3430C /* InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterfaceController.swift; path = watchGalleryExtension/InterfaceController.swift; sourceTree = SOURCE_ROOT; };
 		833078C01BE029EE00804D31 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		833078C11BE029EE00804D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		833078C11BE029EE00804D31 /* AppAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppAssets.xcassets; sourceTree = "<group>"; };
 		833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		833078C31BE029EE00804D31 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
 		833078C41BE029EE00804D31 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		833078DA1BE0337A00804D31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		833078DE1BE0337B00804D31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		833078E31BE0337B00804D31 /* watchGalleryExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = watchGalleryExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		833078FB1BE0D7FD00804D31 /* Photos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Photos.xcassets; sourceTree = "<group>"; };
+		833078FB1BE0D7FD00804D31 /* StockPhotos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = StockPhotos.xcassets; sourceTree = "<group>"; };
 		83436E471BDF94BD00B89409 /* tvGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83436E7A1BDFC9DC00B89409 /* iGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,8 +141,8 @@
 		83436DE41BDF947900B89409 = {
 			isa = PBXGroup;
 			children = (
-				833078C11BE029EE00804D31 /* Assets.xcassets */,
-				833078FB1BE0D7FD00804D31 /* Photos.xcassets */,
+				833078C11BE029EE00804D31 /* AppAssets.xcassets */,
+				833078FB1BE0D7FD00804D31 /* StockPhotos.xcassets */,
 				833078C01BE029EE00804D31 /* AppDelegate.swift */,
 				833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */,
 				833078C31BE029EE00804D31 /* GalleryCollectionViewController.swift */,
@@ -296,7 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				833078DB1BE0337A00804D31 /* Interface.storyboard in Resources */,
-				832000831BE0E3D400A3430C /* Assets.xcassets in Resources */,
+				832000831BE0E3D400A3430C /* AppAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,8 +304,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				832000841BE0E4DC00A3430C /* Photos.xcassets in Resources */,
-				833078F91BE0CF5100804D31 /* Assets.xcassets in Resources */,
+				832000841BE0E4DC00A3430C /* StockPhotos.xcassets in Resources */,
+				833078F91BE0CF5100804D31 /* AppAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,8 +313,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833078FD1BE0D7FD00804D31 /* Photos.xcassets in Resources */,
-				833078CA1BE029EE00804D31 /* Assets.xcassets in Resources */,
+				833078FD1BE0D7FD00804D31 /* StockPhotos.xcassets in Resources */,
+				833078CA1BE029EE00804D31 /* AppAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,8 +323,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				833078D31BE029EE00804D31 /* LaunchScreen.storyboard in Resources */,
-				833078C91BE029EE00804D31 /* Assets.xcassets in Resources */,
-				833078FC1BE0D7FD00804D31 /* Photos.xcassets in Resources */,
+				833078C91BE029EE00804D31 /* AppAssets.xcassets in Resources */,
+				833078FC1BE0D7FD00804D31 /* StockPhotos.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +422,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = watchGallery/watchGallery.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -442,7 +441,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = watchGallery/watchGallery.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -546,8 +544,8 @@
 		83436E6A1BDF94BD00B89409 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_APPICON_NAME = TV;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.tvGallery;
@@ -562,8 +560,8 @@
 		83436E6B1BDF94BD00B89409 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_APPICON_NAME = TV;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.tvGallery;

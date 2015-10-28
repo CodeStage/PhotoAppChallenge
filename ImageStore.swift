@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import WatchKit
 
 
 // Provides stock photos delivered in the app bundle
@@ -28,8 +27,8 @@ class ImageStore {
     }
     
     func imageForIndex(index: Int) -> UIImage? {
-        guard let image = UIImage.init(named: self.assets[index]) else {
-            print("Failed to load image named: \(self.assets[index])")
+        guard let image = UIImage.init(named: assets[index]) else {
+            print("Failed to load image named: \(assets[index])")
             return nil
         }
         return image
@@ -37,8 +36,8 @@ class ImageStore {
     
     func images() -> [UIImage] {
         var images = [UIImage]()
-        for index in 0 ..< self.count {
-            if let image = self.imageForIndex(index) {
+        for index in 0 ..< count {
+            if let image = imageForIndex(index) {
                 images.append(image)
             }
         }
