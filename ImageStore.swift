@@ -8,13 +8,13 @@
 
 import Foundation
 import UIKit
-
+import WatchKit
 
 // To reduce the demo project size, the store pretends to have more images than the bundle actually contains.
 class ImageStore {
 
     private var assets: [String]
-    private let assetNames = [
+    let assetNames = [
         "185H",
         "193H",
         "195H",
@@ -47,10 +47,24 @@ class ImageStore {
         assets.shuffleInPlace()
     }
     
+    
     func imageForIndex(index: Int) -> UIImage? {
-        return UIImage.init(named: self.assets[index])
+        guard let image = UIImage.init(named: self.assets[index]) else {
+            print("Failed to load image named: \(self.assets[index])")
+            return nil
+        }
+        return image
     }
     
+    func images() -> [UIImage] {
+        var images = [UIImage]()
+        for index in 0 ..< self.count {
+            if let image = self.imageForIndex(index) {
+                images.append(image)
+            }
+        }
+        return images
+    }
 }
 
 
