@@ -13,16 +13,16 @@ import Foundation
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet private weak var picker: WKInterfacePicker!
-    private let imageStore = ImageStore()
+    private let imageProvider = StockPhotoStore()
     
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         var items: [WKPickerItem] = []
-        for image in imageStore.images() {
+        for photo in imageProvider.photos() {
             let item = WKPickerItem()
-            item.contentImage = WKImage.init(image: image)
+            item.contentImage = WKImage.init(image: photo.image)
             items.append(item)
         }
         picker.setItems(items)
