@@ -5,18 +5,22 @@ import UIKit
 
 
 // Displays a singe photo and provides zoom functionality
-class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
+class ImageScrollViewController: UIViewController {
 
+    var singleTapRecognizer: UITapGestureRecognizer!
+    
     var imageView: UIImageView!
     var scrollView: UIScrollView {
         get {
             return view as! UIScrollView
         }
     }
+    
     var imageConstraintTop: NSLayoutConstraint!
     var imageConstraintRight: NSLayoutConstraint!
     var imageConstraintLeft: NSLayoutConstraint!
     var imageConstraintBottom: NSLayoutConstraint!
+    
     var lastZoomScale: CGFloat = -1
     var photo: Photo? {
         didSet {
@@ -24,9 +28,9 @@ class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
             updateZoom()
         }
     }
-    var gestureRecognizer: UITapGestureRecognizer!
     
     
+    // Create and configure subviews and layout
     override func loadView() {
         view = UIScrollView()
         imageView = UIImageView(frame: CGRectZero)
@@ -48,12 +52,11 @@ class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.addConstraints([imageConstraintLeft, imageConstraintRight, imageConstraintTop, imageConstraintBottom])
         
-        gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
-        scrollView.addGestureRecognizer(gestureRecognizer)
-
+        singleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
+        scrollView.addGestureRecognizer(singleTapRecognizer)
     }
 
-    // Update zoom scale and constraints with animation.
+    // Update zoom scale and constraints with animation
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
             super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
             coordinator.animateAlongsideTransition({ [weak self] _ in
@@ -61,12 +64,14 @@ class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
                 }, completion: nil)
     }
     
-    func handleTap(sender: UITapGestureRecognizer) {
+    
+    func handleSingleTap(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
+    // Update size and position of the image depending on the current zoom scale
     private func updateConstraints() {
         if let image = imageView.image {
             let imageWidth = image.size.width
@@ -92,24 +97,38 @@ class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    // Zoom to show as much image as possible unless image is smaller than the scroll view
+    // Calculate optimal zoom scale to show as much image as possible unless image is smaller than the scroll view
     private func updateZoom() {
         if let image = imageView.image {
-            let maxZoom = scrollView.bounds.size.height / image.size.height
+            
+            let canvasWidth = scrollView.bounds.size.width
+            let canvasHeight = scrollView.bounds.size.height
+            let photoWidth = image.size.width
+            let photoHeight = image.size.height
+            
+            let photoRatio = photoWidth/photoHeight
+            let canvasRatio = canvasWidth/canvasHeight
+            
+            print("bw: \(canvasWidth) bh: \(canvasHeight) iw: \(photoWidth) ih: \(photoHeight)")
+            print("bw:iw \(canvasWidth/photoWidth) bh:ih: \(canvasHeight/photoHeight)")
+            
+            let maxZoom = canvasHeight / photoHeight
             let minZoom = { () -> CGFloat in
-                let smallestRatio = min(scrollView.bounds.size.width / image.size.width, scrollView.bounds.size.height / image.size.height)
+                let smallestRatio = min(canvasWidth / photoWidth, canvasHeight / photoHeight)
                 if smallestRatio > 1 { return 1 }
                 return smallestRatio
             }()
             let optimalZoom = { () -> CGFloat in
-                if self.scrollView.bounds.size.width > image.size.width {
-                    return self.scrollView.bounds.size.width / image.size.height
+                if photoRatio > canvasRatio {
+                    return canvasWidth / photoWidth
                 }
                 else {
-                    return self.scrollView.bounds.size.width / image.size.width
+                    return canvasHeight / photoHeight
                 }
             }()
             
+            print("min \(minZoom) optimal: \(optimalZoom) max: \(maxZoom)")
+
             scrollView.minimumZoomScale = minZoom
             scrollView.maximumZoomScale = maxZoom
             scrollView.zoomScale = optimalZoom
@@ -117,6 +136,10 @@ class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
             updateConstraints()
         }
     }
+}
+
+
+extension ImageScrollViewController: UIScrollViewDelegate {
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         updateConstraints()
@@ -125,6 +148,5 @@ class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    
 }
 

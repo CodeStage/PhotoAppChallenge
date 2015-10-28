@@ -29,7 +29,7 @@ class StockPhotoStore: PhotoProvider {
 
         if image == nil { print("Failed to load image named: \(name)") }
         
-        // It's ok to let the app crash when unrwapping the Optional value, because this can only be caused by a packaging or deplyment error
+        // It's ok to let the app crash when unrwapping the Optional value fails, because this can only be caused by a packaging or deployment error
         // and in this case the app will not be able to work properly anyway.
         return Photo(image: image!, description: name)
     }

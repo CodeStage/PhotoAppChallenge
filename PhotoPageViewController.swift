@@ -3,7 +3,8 @@
 import UIKit
 
 
-class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+// Displays a single photo and provides scrolling functionality (pages)
+class PageViewController: UIPageViewController {
     
     private let controllers = [ImageScrollViewController(), ImageScrollViewController(), ImageScrollViewController(), ImageScrollViewController(), ImageScrollViewController()]
     private let photoProvider = StockPhotoStore()
@@ -16,6 +17,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     }
     private var nextPage: Int = 0
     private var photos: [Photo] = []
+    
     
     init() {
         super.init(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
@@ -37,6 +39,32 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         self.controllers.first?.photo = photos.first
     }
     
+    
+    private func calculateOffsetForTransitionToController(nextController: ImageScrollViewController) -> Int {
+        let offset = calculateOffsetForTransitionCounterFromCurrentIndex(self.page % self.controllers.count, nextIndex: self.controllers.indexOf(nextController)!, largestPossibleIndex: self.controllers.count - 1)
+        return offset
+    }
+    
+    private func calculateOffsetForTransitionCounterFromCurrentIndex(currrentIndex: Int, nextIndex: Int, largestPossibleIndex: Int) -> Int {
+        if currrentIndex == largestPossibleIndex && nextIndex == 0 {
+            return 1
+        }
+        if currrentIndex == 0 && nextIndex == largestPossibleIndex {
+            return -1
+        }
+        if nextIndex > currrentIndex {
+            return 1
+        }
+        else
+        {
+            return -1
+        }
+    }
+}
+
+
+extension PageViewController: UIPageViewControllerDataSource {
+
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if page == 0 {
             return nil
@@ -51,6 +79,10 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         print("nextIndex: \(nextIndex)")
         return controllers[nextIndex]
     }
+}
+
+
+extension PageViewController: UIPageViewControllerDelegate {
     
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
         let nextController = pendingViewControllers.first as! ImageScrollViewController
@@ -72,30 +104,4 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             print("transition cancelled")
         }
     }
-
-    func calculateOffsetForTransitionToController(nextController: ImageScrollViewController) -> Int {
-        let offset = calculateOffsetForTransitionCounterFromCurrentIndex(self.page % self.controllers.count, nextIndex: self.controllers.indexOf(nextController)!, largestPossibleIndex: self.controllers.count - 1)
-        return offset
-    }
-    
-    func calculateOffsetForTransitionCounterFromCurrentIndex(currrentIndex: Int, nextIndex: Int, largestPossibleIndex: Int) -> Int {
-        if currrentIndex == largestPossibleIndex && nextIndex == 0 {
-            return 1
-        }
-        if currrentIndex == 0 && nextIndex == largestPossibleIndex {
-            return -1
-        }
-        if nextIndex > currrentIndex {
-            return 1
-        }
-        else
-        {
-            return -1
-        }
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
 }
-
