@@ -10,29 +10,15 @@ import Foundation
 import UIKit
 import WatchKit
 
-// To reduce the demo project size, the store pretends to have more images than the bundle actually contains.
+
+// Provides stock photos delivered in the app bundle
 class ImageStore {
 
-    private var assets: [String]
-    let assetNames = [
-        "185H",
-        "193H",
-        "195H",
-        "197H",
-        "198H",
-        "201H",
-        "206H",
-        "208H",
-        "219H",
-        "225H",
-        "226H",
-        "234H",
-        "235H",
-        "237H",
-        "239H",
-        "243H",
-        "244H",
-        "245H",
+    private let assets: [String] = [
+        "6H", "79H", "89H", "8H", "4H", "74H", "44H", "39H", "21H", "12H",
+        "185H", "193H", "195H", "197H", "198H", "201H", "206H", "208H", "219H", "225H",
+        "226H", "234H", "235H", "237H", "239H", "243H", "244H", "245H", "123H", "129H",
+        "147H", "149H", "157H", "165H", "177H", "119H", "160H",
     ]
     
     var count: Int {
@@ -40,13 +26,6 @@ class ImageStore {
             return assets.count
         }
     }
-    
-    
-    init() {
-        assets = assetNames + assetNames + assetNames + assetNames
-        assets.shuffleInPlace()
-    }
-    
     
     func imageForIndex(index: Int) -> UIImage? {
         guard let image = UIImage.init(named: self.assets[index]) else {
@@ -67,16 +46,3 @@ class ImageStore {
     }
 }
 
-
-extension MutableCollectionType where Index == Int {
-    
-    /// Shuffle the elements of `self` in-place.
-    mutating func shuffleInPlace() {
-        if count < 2 { return }
-        for i in 0 ..< count - 1 {
-            let j = Int(arc4random_uniform(UInt32(count - i))) + i
-            guard i != j else { continue }
-            swap(&self[i], &self[j])
-        }
-    }
-}
