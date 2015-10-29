@@ -105,6 +105,7 @@
 		833078FB1BE0D7FD00804D31 /* StockPhotos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = StockPhotos.xcassets; sourceTree = "<group>"; };
 		83436E471BDF94BD00B89409 /* tvGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83436E7A1BDFC9DC00B89409 /* iGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83457B431BE2C80600AA39C4 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,22 +133,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8320008B1BE102EF00A3430C /* Single Photo View Component */ = {
+		8320008B1BE102EF00A3430C /* Single Photo */ = {
 			isa = PBXGroup;
 			children = (
 				8320008E1BE1033000A3430C /* PhotoPageViewController.swift */,
 				8320008D1BE1033000A3430C /* PhotoScrollViewController.swift */,
 			);
-			name = "Single Photo View Component";
+			name = "Single Photo";
 			sourceTree = "<group>";
 		};
-		8320008C1BE1030A00A3430C /* Gallery View Component */ = {
+		8320008C1BE1030A00A3430C /* Gallery View */ = {
 			isa = PBXGroup;
 			children = (
 				833078C21BE029EE00804D31 /* GalleryCollectionViewCell.swift */,
 				833078C31BE029EE00804D31 /* GalleryCollectionViewController.swift */,
 			);
-			name = "Gallery View Component";
+			name = "Gallery View";
 			sourceTree = "<group>";
 		};
 		833078D81BE0337A00804D31 /* watchGallery */ = {
@@ -168,23 +169,16 @@
 			);
 			name = watchGalleryExtension;
 			path = "watchGallery Extension";
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		83436DE41BDF947900B89409 = {
 			isa = PBXGroup;
 			children = (
-				8320008C1BE1030A00A3430C /* Gallery View Component */,
-				8320008B1BE102EF00A3430C /* Single Photo View Component */,
+				83457B431BE2C80600AA39C4 /* Readme.md */,
 				833078C11BE029EE00804D31 /* AppAssets.xcassets */,
 				833078FB1BE0D7FD00804D31 /* StockPhotos.xcassets */,
-				833078C01BE029EE00804D31 /* AppDelegate.swift */,
-				832000931BE1033B00A3430C /* Photo.swift */,
-				833078C41BE029EE00804D31 /* StockPhotoStore.swift */,
-				832000971BE10A7200A3430C /* CameraRollPhotoStore.swift */,
-				833078C51BE029EE00804D31 /* Info.plist */,
-				833078C61BE029EE00804D31 /* LaunchScreen.storyboard */,
-				833078D81BE0337A00804D31 /* watchGallery */,
-				833078E71BE0337B00804D31 /* watchGalleryExtension */,
+				83457B461BE2C90B00AA39C4 /* Components */,
+				83457B481BE2C94F00AA39C4 /* Platforms */,
 				83436DEE1BDF947900B89409 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -198,6 +192,46 @@
 				833078E31BE0337B00804D31 /* watchGalleryExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		83457B441BE2C84500AA39C4 /* iGallery */ = {
+			isa = PBXGroup;
+			children = (
+				833078C01BE029EE00804D31 /* AppDelegate.swift */,
+				833078C51BE029EE00804D31 /* Info.plist */,
+				833078C61BE029EE00804D31 /* LaunchScreen.storyboard */,
+			);
+			name = iGallery;
+			sourceTree = "<group>";
+		};
+		83457B451BE2C88A00AA39C4 /* Photo Store */ = {
+			isa = PBXGroup;
+			children = (
+				832000931BE1033B00A3430C /* Photo.swift */,
+				833078C41BE029EE00804D31 /* StockPhotoStore.swift */,
+				832000971BE10A7200A3430C /* CameraRollPhotoStore.swift */,
+			);
+			name = "Photo Store";
+			sourceTree = "<group>";
+		};
+		83457B461BE2C90B00AA39C4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				83457B451BE2C88A00AA39C4 /* Photo Store */,
+				8320008C1BE1030A00A3430C /* Gallery View */,
+				8320008B1BE102EF00A3430C /* Single Photo */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		83457B481BE2C94F00AA39C4 /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+				83457B441BE2C84500AA39C4 /* iGallery */,
+				833078D81BE0337A00804D31 /* watchGallery */,
+				833078E71BE0337B00804D31 /* watchGalleryExtension */,
+			);
+			name = Platforms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
