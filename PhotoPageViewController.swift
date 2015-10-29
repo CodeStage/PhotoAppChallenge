@@ -30,6 +30,14 @@ class PhotoPageViewController: UIPageViewController {
         let initialViewController = PhotoScrollViewController.init(provider: store, index: startIndex)
         setViewControllers([initialViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
     }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        
+        // This discards already initialized but invisible controllers, which will not be notified on size changes.
+        // When rotating the device, this would lead to an incorrect layout of the controller before and after the current one.
+        setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
+    }
 }
 
 
