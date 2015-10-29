@@ -11,12 +11,10 @@ class PhotoScrollViewController: UIViewController {
     private var imageView: UIImageView!
     private var scrollView: UIScrollView!
     private var textLabel: UILabel!
-
     private var imageConstraintTop: NSLayoutConstraint!
     private var imageConstraintRight: NSLayoutConstraint!
     private var imageConstraintLeft: NSLayoutConstraint!
     private var imageConstraintBottom: NSLayoutConstraint!
-    private var lastZoomScale: CGFloat = -1
     private var photo: Photo? {
         didSet {
             if let _photo = photo {
@@ -43,89 +41,30 @@ class PhotoScrollViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    
     // Create and configure subviews and layout
     override func loadView() {
-        
-        view = UIView(frame: (UIApplication.sharedApplication().keyWindow?.bounds) ?? CGRectZero)
+        let estimatedInitialSize = (UIApplication.sharedApplication().keyWindow?.bounds) ?? CGRectZero
+        view = UIView(frame: estimatedInitialSize)
         view.autoresizesSubviews = true
         
-        addScrollViewToRootView()
-        addImageViewToScrollView()
-        addTapRecognizerToScrollView()
-        let background = addVibrancyViewToRootView(view)
-        addLabelToRootView(background.contentView)
-    }
-    
-    private func addVibrancyViewToRootView(rootView: UIView) -> UIVisualEffectView {
-
-        let blurEffect = UIBlurEffect(style: .Light)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(blurView)
+        scrollView = UIScrollView(frame: estimatedInitialSize)
+        configurePhotoScrollView(scrollView, superView: view)
         
-        let vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
-        let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
-        vibrancyView.translatesAutoresizingMaskIntoConstraints = false
-        blurView.contentView.addSubview(vibrancyView)
-        
-        let constraintLeft = (NSLayoutConstraint.init(item: blurView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1, constant: 0))
-        let constraintRight = (NSLayoutConstraint.init(item: blurView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1, constant: 0))
-//        let constraintTop = (NSLayoutConstraint.init(item: blurView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1, constant: -20))
-        let constraintBottom = (NSLayoutConstraint.init(item: blurView, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1, constant: 0))
-        
-        NSLayoutConstraint.activateConstraints([constraintLeft, constraintRight, constraintBottom])
-        
-        addConstraintsForViewFillingSuperview(vibrancyView, superView: blurView)
-        return vibrancyView
-    }
-    
-    private func addConstraintsForViewFillingSuperview(view: UIView, superView: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let constraintLeft = (NSLayoutConstraint.init(item: view, attribute: .Leading, relatedBy: .Equal, toItem: superView, attribute: .Leading, multiplier: 1, constant: 0))
-        let constraintRight = (NSLayoutConstraint.init(item: view, attribute: .Trailing, relatedBy: .Equal, toItem: superView, attribute: .Trailing, multiplier: 1, constant: 0))
-        let constraintTop = (NSLayoutConstraint.init(item: view, attribute: .Top, relatedBy: .Equal, toItem: superView, attribute: .Top, multiplier: 1, constant: 0))
-        let constraintBottom = (NSLayoutConstraint.init(item: view, attribute: .Bottom, relatedBy: .Equal, toItem: superView, attribute: .Bottom, multiplier: 1, constant: 0))
-        NSLayoutConstraint.activateConstraints([constraintLeft, constraintRight, constraintBottom, constraintTop])
-    }
-    
-    private func addLabelToRootView(rootView: UIView) {
-        textLabel = UILabel()
-        textLabel.textColor = UIColor.whiteColor()
-        textLabel.textAlignment = .Center
-        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        rootView.addSubview(textLabel)
-        addConstraintsForViewFillingSuperview(textLabel, superView: rootView)
-    }
-    
-    private func addScrollViewToRootView() {
-        scrollView = UIScrollView(frame: (UIApplication.sharedApplication().keyWindow?.bounds) ?? CGRectZero)
-        scrollView.delegate = self
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
-        view.addSubview(scrollView)
-        addConstraintsForViewFillingSuperview(scrollView, superView: view)
-    }
-    
-    private func addImageViewToScrollView() {
         imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .ScaleAspectFill
-        imageView.clipsToBounds = true
-        scrollView.addSubview(imageView)
+        configureImageView(imageView, superView: scrollView)
+
+        textLabel = UILabel()
+        configureLabel(textLabel, superView: imageView)
         
-        imageConstraintLeft = (NSLayoutConstraint.init(item: imageView, attribute: .Leading, relatedBy: .Equal, toItem: scrollView, attribute: .Leading, multiplier: 1, constant: 0))
-        imageConstraintRight = (NSLayoutConstraint.init(item: imageView, attribute: .Trailing, relatedBy: .Equal, toItem: scrollView, attribute: .Trailing, multiplier: 1, constant: 0))
-        imageConstraintTop = (NSLayoutConstraint.init(item: imageView, attribute: .Top, relatedBy: .Equal, toItem: scrollView, attribute: .Top, multiplier: 1, constant: 0))
-        imageConstraintBottom = (NSLayoutConstraint.init(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: scrollView, attribute: .Bottom, multiplier: 1, constant: 0))
-        NSLayoutConstraint.activateConstraints([imageConstraintLeft, imageConstraintRight, imageConstraintTop, imageConstraintBottom])
-    }
-    
-    private func addTapRecognizerToScrollView() {
         singleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
         scrollView.addGestureRecognizer(singleTapRecognizer)
         scrollView.userInteractionEnabled = true
+    }
+    
+    func handleSingleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 
     // Update zoom scale and constraints with animation
@@ -141,12 +80,6 @@ class PhotoScrollViewController: UIViewController {
 
         if let index = index {
             photo = store.photoForIndex(index)
-        }
-    }
-    
-    func handleSingleTap(sender: UITapGestureRecognizer) {
-        if sender.state == .Ended {
-            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -168,8 +101,6 @@ class PhotoScrollViewController: UIViewController {
             imageConstraintRight.constant = hPadding
             imageConstraintTop.constant = vPadding
             imageConstraintBottom.constant = vPadding
-            
-            view.needsUpdateConstraints()
             view.layoutIfNeeded()
         }
     }
@@ -184,13 +115,13 @@ class PhotoScrollViewController: UIViewController {
             let photoRatio = photoWidth / photoHeight
             let canvasRatio = canvasWidth / canvasHeight
 
-            let maxZoom = canvasHeight / photoHeight
-            let minZoom = { () -> CGFloat in
+            let maxScale =  6 / UIScreen.mainScreen().scale
+            let minScale = { () -> CGFloat in
                 let smallest = min(canvasWidth / photoWidth, canvasHeight / photoHeight)
                 if smallest > 1 { return 1 }
                 return smallest
             }()
-            let optimalZoom = { () -> CGFloat in
+            let optimalScale = { () -> CGFloat in
                 if photoRatio > canvasRatio {
                     return canvasWidth / photoWidth
                 }
@@ -199,10 +130,9 @@ class PhotoScrollViewController: UIViewController {
                 }
             }()
 
-            scrollView.minimumZoomScale = minZoom
-            scrollView.maximumZoomScale = maxZoom
-            scrollView.zoomScale = optimalZoom
-            lastZoomScale = optimalZoom
+            scrollView.minimumZoomScale = minScale
+            scrollView.maximumZoomScale = maxScale
+            scrollView.zoomScale = optimalScale
             updateConstraints()
         }
     }
@@ -219,4 +149,65 @@ extension PhotoScrollViewController: UIScrollViewDelegate {
         return imageView
     }
 }
+
+
+// Auto-Layout configuration
+extension PhotoScrollViewController {
+
+    private func activateConstraintsForViewFillingSuperView(superView: UIView, view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let constraintLeft = (NSLayoutConstraint.init(item: view, attribute: .Leading, relatedBy: .Equal, toItem: superView, attribute: .Leading, multiplier: 1, constant: 0))
+        let constraintRight = (NSLayoutConstraint.init(item: view, attribute: .Trailing, relatedBy: .Equal, toItem: superView, attribute: .Trailing, multiplier: 1, constant: 0))
+        let constraintTop = (NSLayoutConstraint.init(item: view, attribute: .Top, relatedBy: .Equal, toItem: superView, attribute: .Top, multiplier: 1, constant: 0))
+        let constraintBottom = (NSLayoutConstraint.init(item: view, attribute: .Bottom, relatedBy: .Equal, toItem: superView, attribute: .Bottom, multiplier: 1, constant: 0))
+        NSLayoutConstraint.activateConstraints([constraintLeft, constraintRight, constraintBottom, constraintTop])
+    }
+    
+    private func configurePhotoScrollView(scrollView: UIScrollView, superView: UIView) {
+        scrollView.delegate = self
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
+        view.addSubview(scrollView)
+        activateConstraintsForViewFillingSuperView(superView, view: scrollView)
+    }
+    
+    private func configureImageView(imageView: UIImageView, superView: UIView) {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
+        superView.addSubview(imageView)
+        imageConstraintLeft = (NSLayoutConstraint.init(item: imageView, attribute: .Leading, relatedBy: .Equal, toItem: superView, attribute: .Leading, multiplier: 1, constant: 0))
+        imageConstraintRight = (NSLayoutConstraint.init(item: imageView, attribute: .Trailing, relatedBy: .Equal, toItem: superView, attribute: .Trailing, multiplier: 1, constant: 0))
+        imageConstraintTop = (NSLayoutConstraint.init(item: imageView, attribute: .Top, relatedBy: .Equal, toItem: superView, attribute: .Top, multiplier: 1, constant: 0))
+        imageConstraintBottom = (NSLayoutConstraint.init(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: superView, attribute: .Bottom, multiplier: 1, constant: 0))
+        NSLayoutConstraint.activateConstraints([imageConstraintLeft, imageConstraintRight, imageConstraintTop, imageConstraintBottom])
+    }
+    
+    private func configureLabel(label: UILabel, superView: UIView) {
+        let blurEffect = UIBlurEffect(style: .Light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        superView.addSubview(blurView)
+        
+        let constraintLeft = (NSLayoutConstraint.init(item: blurView, attribute: .Leading, relatedBy: .Equal, toItem: superView, attribute: .Leading, multiplier: 1, constant: 0))
+        let constraintRight = (NSLayoutConstraint.init(item: blurView, attribute: .Trailing, relatedBy: .Equal, toItem: superView, attribute: .Trailing, multiplier: 1, constant: 0))
+        let constraintBottom = (NSLayoutConstraint.init(item: blurView, attribute: .Bottom, relatedBy: .Equal, toItem: superView, attribute: .Bottom, multiplier: 1, constant: 0))
+        NSLayoutConstraint.activateConstraints([constraintLeft, constraintRight, constraintBottom])
+        
+        let vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
+        let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
+        vibrancyView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.contentView.addSubview(vibrancyView)
+        activateConstraintsForViewFillingSuperView(blurView, view: vibrancyView)
+        
+        textLabel.textColor = UIColor.whiteColor()
+        textLabel.textAlignment = .Center
+        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        vibrancyView.contentView.addSubview(textLabel)
+        activateConstraintsForViewFillingSuperView(vibrancyView, view: textLabel)
+    }
+}
+
+
 
