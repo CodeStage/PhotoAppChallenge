@@ -47,19 +47,18 @@ class PhotoScrollViewController: UIViewController {
     
     // Create and configure subviews and layout
     override func loadView() {
-//        view = UIScrollView()
-        view = UIScrollView(frame: (UIApplication.sharedApplication().keyWindow?.bounds)!) // view == scrollView
+        let estimatedInitialSize = (UIApplication.sharedApplication().keyWindow?.bounds)
+        view = UIScrollView(frame: estimatedInitialSize ?? CGRectZero)
         
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        view.autoresizesSubviews = true
-        
+        // view == scrollView
+        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        scrollView.autoresizesSubviews = true
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
 
-        imageView = UIImageView()
-//        imageView = UIImageView(frame: (UIApplication.sharedApplication().keyWindow?.bounds)!)
+        imageView = UIImageView(frame: estimatedInitialSize ?? CGRectZero)
         view.addSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -91,13 +90,6 @@ class PhotoScrollViewController: UIViewController {
         if let index = index {
             photo = store.photoForIndex(index)
         }
-    }
-    
-    // TODO: This is a fix for a weird glitch when the 1st or 2nd image is not positioned correctly
-    // while going forward or backwards after rotation
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        updateZoom()
     }
     
     func handleSingleTap(sender: UITapGestureRecognizer) {
