@@ -27,7 +27,7 @@ class PhotoPageViewController: UIPageViewController {
         super.viewDidLoad()
 
         dataSource = self
-        let initialViewController = PhotoScrollViewController.dequeReusableController(store, index: startIndex)
+        let initialViewController = PhotoScrollViewController.init(provider: store, index: startIndex)
         setViewControllers([initialViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
     }
 }
@@ -39,14 +39,14 @@ extension PhotoPageViewController: UIPageViewControllerDataSource {
         guard let currentIndex = (viewController as! PhotoScrollViewController).index else { return nil }
         guard currentIndex > 0 else { return nil }
         
-        return PhotoScrollViewController.dequeReusableController(store, index: currentIndex - 1)
+        return PhotoScrollViewController.init(provider: store, index: currentIndex - 1)
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = (viewController as! PhotoScrollViewController).index else { return nil }
         guard currentIndex < store.count - 1 else { return nil }
         
-        return PhotoScrollViewController.dequeReusableController(store, index: currentIndex + 1)
+        return PhotoScrollViewController.init(provider: store, index: currentIndex + 1)
     }
 }
 

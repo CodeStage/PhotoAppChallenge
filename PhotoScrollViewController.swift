@@ -7,26 +7,6 @@ import UIKit
 // Displays a singe photo and provides zoom functionality
 class PhotoScrollViewController: UIViewController {
 
-    static var pool: [PhotoScrollViewController] = []
-
-    // Provides a mechanism to reuse controllers for better UIPageViewController performance
-    // TODO: Refactor pool into individial component
-    static func dequeReusableController(provider: PhotoProvider, index: Int?) -> PhotoScrollViewController {
-        if let vc = pool.first {
-            pool.removeFirst()
-            vc.index = index
-            return vc
-        }
-        return PhotoScrollViewController.init(provider: provider, index: index)
-    }
-    
-    static func prepareForReuse(controller: PhotoScrollViewController) {
-        controller.imageView.image = nil
-        controller.index = nil
-        pool.append(controller)
-    }
-    
-    
     private var singleTapRecognizer: UITapGestureRecognizer!
     private var imageView: UIImageView!
     private var scrollView: UIScrollView {
@@ -113,12 +93,12 @@ class PhotoScrollViewController: UIViewController {
         }
     }
     
-    override func didMoveToParentViewController(parent: UIViewController?) {
-        if parent == nil {
-            PhotoScrollViewController.prepareForReuse(self)
-        }
+    // TODO: This is a fix for a weird glitch when the 1st or 2nd image is not positioned correctly
+    // while going forward or backwards after rotation
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        updateZoom()
     }
-    
     
     func handleSingleTap(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
@@ -131,20 +111,17 @@ class PhotoScrollViewController: UIViewController {
         if let image = imageView.image {
             let imageWidth = image.size.width
             let imageHeight = image.size.height
-            
             let viewWidth = scrollView.bounds.size.width
             let viewHeight = scrollView.bounds.size.height
             
             // Center image if it is smaller than the scroll view
             var hPadding = (viewWidth - scrollView.zoomScale * imageWidth) / 2
             if hPadding < 0 { hPadding = 0 }
-            
             var vPadding = (viewHeight - scrollView.zoomScale * imageHeight) / 2
             if vPadding < 0 { vPadding = 0 }
             
             imageConstraintLeft.constant = hPadding
             imageConstraintRight.constant = hPadding
-            
             imageConstraintTop.constant = vPadding
             imageConstraintBottom.constant = vPadding
             
@@ -176,10 +153,6 @@ class PhotoScrollViewController: UIViewController {
                     return canvasHeight / photoHeight
                 }
             }()
-            
-//            print("bw: \(canvasWidth) bh: \(canvasHeight) iw: \(photoWidth) ih: \(photoHeight)")
-//            print("bw:iw \(canvasWidth/photoWidth) bh:ih: \(canvasHeight/photoHeight)")
-//            print("min \(minZoom) optimal: \(optimalZoom) max: \(maxZoom)")
 
             scrollView.minimumZoomScale = minZoom
             scrollView.maximumZoomScale = maxZoom
