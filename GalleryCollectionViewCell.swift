@@ -41,4 +41,19 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         addConstraint(NSLayoutConstraint.init(item: imageView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint.init(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1, constant: 0))
     }
+    
+    
+    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        coordinator.addCoordinatedAnimations({
+            if self.focused {
+                self.layer.borderWidth = 2
+                self.layer.borderColor = UIColor.redColor().CGColor
+            }
+            else {
+                
+                self.layer.borderWidth = 0
+//                self.layer.borderColor = UIColor.redColor().CGColor
+            }
+            }, completion: nil)
+    }
 }

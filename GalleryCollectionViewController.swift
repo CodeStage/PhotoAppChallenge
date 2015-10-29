@@ -29,22 +29,6 @@ class GalleryCollectionViewController: UICollectionViewController {
         configureLayout()
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return store.count
-    }
-    
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: GalleryCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(GalleryCollectionViewCell.identifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
-        cell.image = store.photoForIndex(indexPath.row)?.image
-        return cell
-    }
-    
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let detailViewController = PhotoPageViewController.init(photoProvider: store, startIndex: indexPath.row)
-        detailViewController.modalTransitionStyle = .CrossDissolve
-        presentViewController(detailViewController, animated: true, completion: nil)
-    }
-    
     // Defines how many images should be displayed in one row
     private func numberOfCellsInRow() -> CGFloat {
         if traitCollection.userInterfaceIdiom == .TV { return 7 }
@@ -61,3 +45,31 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
     
 }
+
+
+extension GalleryCollectionViewController {
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return store.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell: GalleryCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(GalleryCollectionViewCell.identifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
+        cell.image = store.photoForIndex(indexPath.row)?.image
+        return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let detailViewController = PhotoPageViewController.init(photoProvider: store, startIndex: indexPath.row)
+        detailViewController.modalTransitionStyle = .CrossDissolve
+        presentViewController(detailViewController, animated: true, completion: nil)
+    }
+    
+    override func collectionView(collectionView: UICollectionView, canFocusItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    
+    
+}
+
