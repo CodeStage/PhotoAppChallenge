@@ -18,7 +18,6 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         imageView = UIImageView.init(coder: aDecoder)!
         super.init(coder: aDecoder)

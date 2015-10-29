@@ -5,55 +5,96 @@ import UIKit
 
 
 // Displays a singe photo and provides zoom functionality
-class ImageScrollViewController: UIViewController {
+class PhotoScrollViewController: UIViewController {
 
-    var singleTapRecognizer: UITapGestureRecognizer!
+    static var pool: [PhotoScrollViewController] = []
+
+    // Provides a mechanism to reuse controllers for better UIPageViewController performance
+    // TODO: Refactor pool into individial component
+    static func dequeReusableController(provider: PhotoProvider, index: Int?) -> PhotoScrollViewController {
+        if let vc = pool.first {
+            pool.removeFirst()
+            vc.index = index
+            return vc
+        }
+        return PhotoScrollViewController.init(provider: provider, index: index)
+    }
     
-    var imageView: UIImageView!
-    var scrollView: UIScrollView {
+    static func prepareForReuse(controller: PhotoScrollViewController) {
+        controller.imageView.image = nil
+        controller.index = nil
+        pool.append(controller)
+    }
+    
+    
+    private var singleTapRecognizer: UITapGestureRecognizer!
+    private var imageView: UIImageView!
+    private var scrollView: UIScrollView {
         get {
             return view as! UIScrollView
         }
     }
-    
-    var imageConstraintTop: NSLayoutConstraint!
-    var imageConstraintRight: NSLayoutConstraint!
-    var imageConstraintLeft: NSLayoutConstraint!
-    var imageConstraintBottom: NSLayoutConstraint!
-    
-    var lastZoomScale: CGFloat = -1
-    var photo: Photo? {
+    private var imageConstraintTop: NSLayoutConstraint!
+    private var imageConstraintRight: NSLayoutConstraint!
+    private var imageConstraintLeft: NSLayoutConstraint!
+    private var imageConstraintBottom: NSLayoutConstraint!
+    private var lastZoomScale: CGFloat = -1
+    private var photo: Photo? {
         didSet {
-            imageView.image = photo?.image
-            updateZoom()
+            if let _photo = photo {
+                imageView.image = _photo.image
+                updateZoom()
+            }
+            else {
+                imageView.image = nil
+            }
         }
+    }
+    private var store: PhotoProvider!
+    var index: Int?
+    
+    
+    init(provider: PhotoProvider, index: Int?) {
+        self.store = provider
+        self.index = index
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     
     // Create and configure subviews and layout
     override func loadView() {
-        view = UIScrollView()
-        imageView = UIImageView(frame: CGRectZero)
+//        view = UIScrollView()
+        view = UIScrollView(frame: (UIApplication.sharedApplication().keyWindow?.bounds)!) // view == scrollView
+        
+        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizesSubviews = true
+        
+        scrollView.delegate = self
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
+
+        imageView = UIImageView()
+//        imageView = UIImageView(frame: (UIApplication.sharedApplication().keyWindow?.bounds)!)
         view.addSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .ScaleAspectFill
         imageView.clipsToBounds = true
         
-        scrollView.delegate = self
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
-        
         imageConstraintLeft = (NSLayoutConstraint.init(item: imageView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1, constant: 0))
         imageConstraintRight = (NSLayoutConstraint.init(item: imageView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1, constant: 0))
         imageConstraintTop = (NSLayoutConstraint.init(item: imageView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1, constant: 0))
         imageConstraintBottom = (NSLayoutConstraint.init(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1, constant: 0))
-        
-        scrollView.addConstraints([imageConstraintLeft, imageConstraintRight, imageConstraintTop, imageConstraintBottom])
-        
+        NSLayoutConstraint.activateConstraints([imageConstraintLeft, imageConstraintRight, imageConstraintTop, imageConstraintBottom])
+
         singleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
         scrollView.addGestureRecognizer(singleTapRecognizer)
+        scrollView.userInteractionEnabled = true
     }
 
     // Update zoom scale and constraints with animation
@@ -62,6 +103,20 @@ class ImageScrollViewController: UIViewController {
             coordinator.animateAlongsideTransition({ [weak self] _ in
                     self?.updateZoom()
                 }, completion: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let index = index {
+            photo = store.photoForIndex(index)
+        }
+    }
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            PhotoScrollViewController.prepareForReuse(self)
+        }
     }
     
     
@@ -100,23 +155,18 @@ class ImageScrollViewController: UIViewController {
     // Calculate optimal zoom scale to show as much image as possible unless image is smaller than the scroll view
     private func updateZoom() {
         if let image = imageView.image {
-            
             let canvasWidth = scrollView.bounds.size.width
             let canvasHeight = scrollView.bounds.size.height
             let photoWidth = image.size.width
             let photoHeight = image.size.height
-            
-            let photoRatio = photoWidth/photoHeight
-            let canvasRatio = canvasWidth/canvasHeight
-            
-            print("bw: \(canvasWidth) bh: \(canvasHeight) iw: \(photoWidth) ih: \(photoHeight)")
-            print("bw:iw \(canvasWidth/photoWidth) bh:ih: \(canvasHeight/photoHeight)")
-            
+            let photoRatio = photoWidth / photoHeight
+            let canvasRatio = canvasWidth / canvasHeight
+
             let maxZoom = canvasHeight / photoHeight
             let minZoom = { () -> CGFloat in
-                let smallestRatio = min(canvasWidth / photoWidth, canvasHeight / photoHeight)
-                if smallestRatio > 1 { return 1 }
-                return smallestRatio
+                let smallest = min(canvasWidth / photoWidth, canvasHeight / photoHeight)
+                if smallest > 1 { return 1 }
+                return smallest
             }()
             let optimalZoom = { () -> CGFloat in
                 if photoRatio > canvasRatio {
@@ -127,7 +177,9 @@ class ImageScrollViewController: UIViewController {
                 }
             }()
             
-            print("min \(minZoom) optimal: \(optimalZoom) max: \(maxZoom)")
+//            print("bw: \(canvasWidth) bh: \(canvasHeight) iw: \(photoWidth) ih: \(photoHeight)")
+//            print("bw:iw \(canvasWidth/photoWidth) bh:ih: \(canvasHeight/photoHeight)")
+//            print("min \(minZoom) optimal: \(optimalZoom) max: \(maxZoom)")
 
             scrollView.minimumZoomScale = minZoom
             scrollView.maximumZoomScale = maxZoom
@@ -139,7 +191,7 @@ class ImageScrollViewController: UIViewController {
 }
 
 
-extension ImageScrollViewController: UIScrollViewDelegate {
+extension PhotoScrollViewController: UIScrollViewDelegate {
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         updateConstraints()

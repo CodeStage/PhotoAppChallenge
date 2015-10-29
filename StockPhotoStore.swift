@@ -23,22 +23,27 @@ class StockPhotoStore: PhotoProvider {
         }
     }
     
-    func photoForIndex(index: Int) -> Photo {
+    func photoForIndex(index: Int) -> Photo? {
+        guard index >= 0 else { return nil }
+        guard index < count else { return nil }
+        
         let name = assets[index]
         let image = UIImage.init(named: name)
 
-        if image == nil { print("Failed to load image named: \(name)") }
+        if let image = image {
+            return Photo(image: image, description: name)
+        }
         
-        // It's ok to let the app crash when unrwapping the Optional value fails, because this can only be caused by a packaging or deployment error
-        // and in this case the app will not be able to work properly anyway.
-        return Photo(image: image!, description: name)
+        print("Failed to load image named: \(name)")
+        return nil
     }
     
     func photos() -> [Photo] {
         var images = [Photo]()
         for index in 0 ..< count {
-
-            images.append(photoForIndex(index))
+            if let photo = photoForIndex(index) {
+                images.append(photo)
+            }
         }
         return images
     }

@@ -7,11 +7,10 @@ import UIKit
 // Displays a collection of images and allows to zoom in on one
 class GalleryCollectionViewController: UICollectionViewController {
 
-    private let imageProvider = StockPhotoStore()
+    private let store = StockPhotoStore()
     private let layout = UICollectionViewFlowLayout()
     private let padding: CGFloat = 1 // Defines the padding around each cell
 
-    
     init() {
         super.init(collectionViewLayout: layout)
     }
@@ -31,19 +30,19 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageProvider.count
+        return store.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: GalleryCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(GalleryCollectionViewCell.identifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
-        cell.image = imageProvider.photoForIndex(indexPath.row).image
+        cell.image = store.photoForIndex(indexPath.row)?.image
         return cell
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let vc = PageViewController()
-        vc.modalTransitionStyle = .CrossDissolve
-        presentViewController(vc, animated: true, completion: nil)
+        let detailViewController = PhotoPageViewController.init(photoProvider: store, startIndex: indexPath.row)
+        detailViewController.modalTransitionStyle = .CrossDissolve
+        presentViewController(detailViewController, animated: true, completion: nil)
     }
     
     // Defines how many images should be displayed in one row

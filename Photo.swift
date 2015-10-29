@@ -21,7 +21,7 @@ class Photo: NSObject {
 protocol PhotoProvider {
     var count: Int { get }
     
-    func photoForIndex(index: Int) -> Photo
+    func photoForIndex(index: Int) -> Photo?
     func photos() -> [Photo]
 }
 
