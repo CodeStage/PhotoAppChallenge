@@ -48,7 +48,6 @@ class GalleryCollectionViewController: UICollectionViewController {
 
 extension GalleryCollectionViewController {
 
-    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return store.count
     }
@@ -59,21 +58,25 @@ extension GalleryCollectionViewController {
         return cell
     }
     
+    // Displays single photo when a cell is selected
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailViewController = PhotoPageViewController.init(photoProvider: store, startIndex: indexPath.row)
         detailViewController.modalTransitionStyle = .CrossDissolve
         presentViewController(detailViewController, animated: true, completion: nil)
     }
     
+    // Disables focus on all cells but the previously selcted one, which causes the focus to be set correctly.
+    // This is somewhat dirty, but the documented way to do this did not work.
     override func collectionView(collectionView: UICollectionView, canFocusItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if let selectedIndexPath = store.selectedIndexPath {
-            return selectedIndexPath.row == indexPath.row
+        if let selectedIndex = store.selectedIndex {
+            return selectedIndex == indexPath.row
         }
         return true
     }
     
+    // Reset disable focus on all cells but the previously selected after every focus update
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        store.selectedIndexPath = nil
+        store.selectedIndex = nil
     }
 }
 

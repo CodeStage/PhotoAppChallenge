@@ -20,9 +20,8 @@ class Photo: NSObject {
 // Supports different photo sources
 protocol PhotoProvider {
     var count: Int { get } // Total number of photos in the store
-    var selectedIndexPath: NSIndexPath? { get set } // Can store which photo is selected
+    var selectedIndex: Int? { get set } // Can store which photo is selected
     
     func photoForIndex(index: Int) -> Photo? // Fetch a specific photo
-    func photos() -> [Photo] // Fetch all photos at once
 }
 

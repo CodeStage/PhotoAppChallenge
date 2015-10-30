@@ -42,7 +42,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         addConstraint(NSLayoutConstraint.init(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1, constant: 0))
     }
     
-    
+    // Displays a small border around a focused cell
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         coordinator.addCoordinatedAnimations({
             if self.focused {

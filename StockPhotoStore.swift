@@ -5,9 +5,6 @@ import UIKit
 
 
 // Provides stock photos from the app bundle
-//
-// Use count and photoForIndex() when working with large data sets,
-// otherwise loading all photos at once with photos() is fine.
 class StockPhotoStore: PhotoProvider {
 
     private let assets: [String] = [
@@ -22,12 +19,8 @@ class StockPhotoStore: PhotoProvider {
             return assets.count
         }
     }
-    
-    var selectedIndexPath: NSIndexPath? {
-        didSet {
-            print("selectedIndex: \(selectedIndexPath?.row)")
-        }
-    }
+    var selectedIndex: Int?
+
     
     func photoForIndex(index: Int) -> Photo? {
         guard index >= 0 else { return nil }
@@ -42,16 +35,6 @@ class StockPhotoStore: PhotoProvider {
         
         print("Failed to load image named: \(name)")
         return nil
-    }
-    
-    func photos() -> [Photo] {
-        var images = [Photo]()
-        for index in 0 ..< count {
-            if let photo = photoForIndex(index) {
-                images.append(photo)
-            }
-        }
-        return images
     }
 }
 

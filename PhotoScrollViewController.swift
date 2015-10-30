@@ -75,12 +75,13 @@ class PhotoScrollViewController: UIViewController {
                 }, completion: nil)
     }
     
+    // Load the image into the view and save the current index for later (it's needed to restore the focus in the overview)
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         if let index = index {
             photo = store.photoForIndex(index)
-            store.selectedIndexPath = NSIndexPath(forItem: index, inSection: 0)
+            store.selectedIndex = index
         }
     }
     
