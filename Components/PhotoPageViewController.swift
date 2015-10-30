@@ -8,6 +8,7 @@ class PhotoPageViewController: UIPageViewController {
     
     private var store: PhotoProvider!
     private var startIndex: Int = 0
+    private var singleTapRecognizer: UITapGestureRecognizer!
     
     
     init(photoProvider: PhotoProvider, startIndex: Int?) {
@@ -26,6 +27,10 @@ class PhotoPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        singleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
+        view.backgroundColor = UIColor.blackColor()
+        view.addGestureRecognizer(singleTapRecognizer)
+        
         dataSource = self
         let initialViewController = PhotoScrollViewController.init(provider: store, index: startIndex)
         setViewControllers([initialViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
@@ -41,6 +46,14 @@ class PhotoPageViewController: UIPageViewController {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    func handleSingleTap(sender: UITapGestureRecognizer) {
+        print("Tap")
+        if sender.state == .Ended {
+            print("Tap Ended")
+            dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 }
 

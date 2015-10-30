@@ -7,7 +7,6 @@ import UIKit
 // Displays a singe photo and provides zoom functionality
 class PhotoScrollViewController: UIViewController {
 
-    private var singleTapRecognizer: UITapGestureRecognizer!
     private var imageView: UIImageView!
     private var scrollView: UIScrollView!
     private var textLabel: UILabel!
@@ -55,16 +54,6 @@ class PhotoScrollViewController: UIViewController {
 
         textLabel = UILabel()
         configureLabel(textLabel, superView: imageView)
-        
-        singleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
-        view.backgroundColor = UIColor.blackColor()
-        view.addGestureRecognizer(singleTapRecognizer)
-    }
-    
-    func handleSingleTap(sender: UITapGestureRecognizer) {
-        if sender.state == .Ended {
-            dismissViewControllerAnimated(true, completion: nil)
-        }
     }
 
     // Update zoom scale and constraints with animation
