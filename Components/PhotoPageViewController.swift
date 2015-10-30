@@ -38,6 +38,10 @@ class PhotoPageViewController: UIPageViewController {
         // When rotating the device, this would lead to an incorrect layout of the controller before and after the current one.
         setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
 
 
