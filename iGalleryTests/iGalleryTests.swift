@@ -15,7 +15,7 @@ class iGalleryTests: XCTestCase {
     func testThatStockPhotoStoreProvidesPhotos() {
         let store = StockPhotoStore()
         
-        XCTAssertGreaterThan(store.count, 0, "Store should provide photos")
+        XCTAssertGreaterThan(store.count, 0, "The store could not load any photos. Maybe the are not contained in the app bundle?")
         
         for index in 0 ..< store.count {
             if let photo = store.photoForIndex(index) {
@@ -24,7 +24,7 @@ class iGalleryTests: XCTestCase {
                 XCTAssertGreaterThan(image.size.height, 0, "Image height should be greater than 0")
             }
             else {
-                XCTFail("Store did not provide a photo for index: \(index)")
+                XCTFail("The store did not provide a photo for index: \(index)")
             }
         }
     }
