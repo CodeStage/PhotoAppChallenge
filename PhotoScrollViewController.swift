@@ -80,6 +80,7 @@ class PhotoScrollViewController: UIViewController {
 
         if let index = index {
             photo = store.photoForIndex(index)
+            store.selectedIndexPath = NSIndexPath(forItem: index, inSection: 0)
         }
     }
     

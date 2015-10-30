@@ -43,11 +43,11 @@ class GalleryCollectionViewController: UICollectionViewController {
         layout.minimumInteritemSpacing = padding
         layout.minimumLineSpacing = padding
     }
-    
 }
 
 
 extension GalleryCollectionViewController {
+
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return store.count
@@ -66,10 +66,14 @@ extension GalleryCollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, canFocusItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if let selectedIndexPath = store.selectedIndexPath {
+            return selectedIndexPath.row == indexPath.row
+        }
         return true
     }
     
-    
-    
+    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        store.selectedIndexPath = nil
+    }
 }
 

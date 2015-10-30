@@ -23,6 +23,12 @@ class StockPhotoStore: PhotoProvider {
         }
     }
     
+    var selectedIndexPath: NSIndexPath? {
+        didSet {
+            print("selectedIndex: \(selectedIndexPath?.row)")
+        }
+    }
+    
     func photoForIndex(index: Int) -> Photo? {
         guard index >= 0 else { return nil }
         guard index < count else { return nil }
