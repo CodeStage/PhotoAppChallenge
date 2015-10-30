@@ -52,7 +52,6 @@ class GalleryCollectionViewCell: UICollectionViewCell {
             else {
                 
                 self.layer.borderWidth = 0
-//                self.layer.borderColor = UIColor.redColor().CGColor
             }
             }, completion: nil)
     }

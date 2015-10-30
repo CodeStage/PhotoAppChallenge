@@ -14,9 +14,6 @@
 		832000941BE1033B00A3430C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832000931BE1033B00A3430C /* Photo.swift */; };
 		832000951BE1033B00A3430C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832000931BE1033B00A3430C /* Photo.swift */; };
 		832000961BE105B800A3430C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832000931BE1033B00A3430C /* Photo.swift */; };
-		832000981BE10A7200A3430C /* CameraRollPhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832000971BE10A7200A3430C /* CameraRollPhotoStore.swift */; };
-		832000991BE10A7200A3430C /* CameraRollPhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832000971BE10A7200A3430C /* CameraRollPhotoStore.swift */; };
-		8320009A1BE10A7200A3430C /* CameraRollPhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832000971BE10A7200A3430C /* CameraRollPhotoStore.swift */; };
 		8320009D1BE10B2000A3430C /* PhotoScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320008D1BE1033000A3430C /* PhotoScrollViewController.swift */; };
 		8320009E1BE10B2000A3430C /* PhotoScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320008D1BE1033000A3430C /* PhotoScrollViewController.swift */; };
 		832000A01BE10E2C00A3430C /* PhotoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320008E1BE1033000A3430C /* PhotoPageViewController.swift */; };
@@ -403,7 +400,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8320009A1BE10A7200A3430C /* CameraRollPhotoStore.swift in Sources */,
 				832000961BE105B800A3430C /* Photo.swift in Sources */,
 				8320008A1BE0EBA400A3430C /* InterfaceController.swift in Sources */,
 				832000881BE0EBA400A3430C /* ExtensionDelegate.swift in Sources */,
@@ -418,7 +414,6 @@
 				833078C81BE029EE00804D31 /* AppDelegate.swift in Sources */,
 				832000951BE1033B00A3430C /* Photo.swift in Sources */,
 				8320009E1BE10B2000A3430C /* PhotoScrollViewController.swift in Sources */,
-				832000991BE10A7200A3430C /* CameraRollPhotoStore.swift in Sources */,
 				833078CE1BE029EE00804D31 /* GalleryCollectionViewController.swift in Sources */,
 				833078CC1BE029EE00804D31 /* GalleryCollectionViewCell.swift in Sources */,
 				833078D01BE029EE00804D31 /* StockPhotoStore.swift in Sources */,
@@ -433,7 +428,6 @@
 				833078C71BE029EE00804D31 /* AppDelegate.swift in Sources */,
 				832000941BE1033B00A3430C /* Photo.swift in Sources */,
 				8320009D1BE10B2000A3430C /* PhotoScrollViewController.swift in Sources */,
-				832000981BE10A7200A3430C /* CameraRollPhotoStore.swift in Sources */,
 				833078CD1BE029EE00804D31 /* GalleryCollectionViewController.swift in Sources */,
 				833078CB1BE029EE00804D31 /* GalleryCollectionViewCell.swift in Sources */,
 				833078CF1BE029EE00804D31 /* StockPhotoStore.swift in Sources */,

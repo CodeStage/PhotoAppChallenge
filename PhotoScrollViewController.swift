@@ -57,8 +57,8 @@ class PhotoScrollViewController: UIViewController {
         configureLabel(textLabel, superView: imageView)
         
         singleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
-        scrollView.addGestureRecognizer(singleTapRecognizer)
-        scrollView.userInteractionEnabled = true
+        view.backgroundColor = UIColor.blackColor()
+        view.addGestureRecognizer(singleTapRecognizer)
     }
     
     func handleSingleTap(sender: UITapGestureRecognizer) {

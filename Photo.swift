@@ -19,9 +19,9 @@ class Photo: NSObject {
 
 // Supports different photo sources
 protocol PhotoProvider {
-    var count: Int { get }
+    var count: Int { get } // Total number of photos in the store
     
-    func photoForIndex(index: Int) -> Photo?
-    func photos() -> [Photo]
+    func photoForIndex(index: Int) -> Photo? // Fetch a specific photo
+    func photos() -> [Photo] // Fetch all photos at once
 }
 
