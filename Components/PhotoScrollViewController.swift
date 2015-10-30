@@ -23,6 +23,7 @@ class PhotoScrollViewController: UIViewController {
             }
             else {
                 imageView.image = nil
+                textLabel.text = nil
             }
         }
     }
@@ -69,7 +70,9 @@ class PhotoScrollViewController: UIViewController {
         super.viewWillAppear(animated)
 
         if let index = index {
-            photo = store.photoForIndex(index)
+            store.photoForIndex(index, targetSize: self.view.bounds.size) { (photo) -> () in
+                self.photo = photo
+            }
             store.selectedIndex = index
         }
     }

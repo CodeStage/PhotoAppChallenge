@@ -8,6 +8,8 @@ import UIKit
 class GalleryCollectionViewController: UICollectionViewController {
 
     private let store = StockPhotoStore()
+//    private let store = DevicePhotoStore()
+    
     private let layout = UICollectionViewFlowLayout()
     private let padding: CGFloat = 1 // Defines the padding around each cell
 
@@ -54,7 +56,9 @@ extension GalleryCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: GalleryCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(GalleryCollectionViewCell.identifier, forIndexPath: indexPath) as! GalleryCollectionViewCell
-        cell.image = store.photoForIndex(indexPath.row)?.image
+        store.photoForIndex(indexPath.row, targetSize: layout.itemSize) { (photo) -> () in
+            cell.image = photo.image
+        }
         return cell
     }
     

@@ -20,11 +20,11 @@ class InterfaceController: WKInterfaceController {
         
         var items: [WKPickerItem] = []
         for index in 0 ..< imageProvider.count {
-            if let photo = imageProvider.photoForIndex(index) {
+            imageProvider.photoForIndex(index, completion: { (photo) -> () in
                 let item = WKPickerItem()
                 item.contentImage = WKImage.init(image: photo.image)
                 items.append(item)
-            }
+            })
         }
         picker.setItems(items)
     }

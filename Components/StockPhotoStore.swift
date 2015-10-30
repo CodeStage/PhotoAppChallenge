@@ -23,20 +23,21 @@ class StockPhotoStore: PhotoProvider {
     }
     var selectedIndex: Int?
 
-    
-    func photoForIndex(index: Int) -> Photo? {
-        guard index >= 0 else { return nil }
-        guard index < count else { return nil }
+
+    func photoForIndex(index: Int, completion: (photo: Photo) -> ()) -> () {
+        guard index >= 0 else { return }
+        guard index < count else { return }
         
         let name = assets[index]
         let image = UIImage.init(named: name)
 
         if let image = image {
-            return Photo(image: image, description: name)
+            completion(photo: Photo(image: image, description: name))
         }
-        
-        print("Failed to load image named: \(name)")
-        return nil
+    }
+    
+    func photoForIndex(index: Int, targetSize: CGSize, completion: (photo: Photo) -> ()) -> () {
+        return photoForIndex(index, completion: completion)
     }
 }
 

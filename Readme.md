@@ -17,8 +17,12 @@ On watchOS a picker control is used to display single photos, a gallery view is 
 
 Making use of auto-layout, size classes and dynamic type, each component has only a single implementation that supports all platforms.
 
+
 ### The photo store
 A photo is replesented by a `Photo` object, which contains the actual image and a description. `StockPhotoStore` provides a couple of low-res stock photos which the app can use without accessing the camera roll.
+
+**If you want to acces the device's photos** you can do so by replacing `StockPhotoStore` with `DevicePhotoStore` in the `GalleryCollectionViewController`. I'm not offering this as default or through the UI, because it's not available on the Apple TV and has some issues when loading photos from iCloud storage.
+
 
 ### The gallery view
 `GalleryCollectionViewController` is the root view controller of the dem app. It uses `GalleryCollectionViewCell` to display miniaturised versions of the photos. Note that there is no offline optimization, so using a very large number of photos might raise performance issues. Tapping one of the cells - or selecting one with the TV remote - will show the select image modally.
