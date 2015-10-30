@@ -49,9 +49,7 @@ class PhotoPageViewController: UIPageViewController {
     }
     
     func handleSingleTap(sender: UITapGestureRecognizer) {
-        print("Tap")
         if sender.state == .Ended {
-            print("Tap Ended")
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
