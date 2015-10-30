@@ -55,4 +55,8 @@ class GalleryCollectionViewCell: UICollectionViewCell {
             }
             }, completion: nil)
     }
+    
+    override func prepareForReuse() {
+        image = nil
+    }
 }

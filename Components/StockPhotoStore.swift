@@ -29,10 +29,15 @@ class StockPhotoStore: PhotoProvider {
         guard index < count else { return }
         
         let name = assets[index]
-        let image = UIImage.init(named: name)
-
-        if let image = image {
-            completion(photo: Photo(image: image, description: name))
+        
+        // Offload disk access to a background thread to keep scrolling smooth
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let image = UIImage.init(named: name)
+            if let image = image {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(photo: Photo(image: image, description: name))
+                }
+            }
         }
     }
     
