@@ -16,8 +16,18 @@
                     <view key="view" contentMode="scaleToFill" id="G42-3Q-EYZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopcoderLogo" translatesAutoresizingMaskIntoConstraints="NO" id="stw-Ke-bxb">
+                                <rect key="frame" x="274" y="285.5" width="52" height="29"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="stw-Ke-bxb" firstAttribute="centerX" secondItem="G42-3Q-EYZ" secondAttribute="centerX" id="Hn9-Ya-j6g"/>
+                            <constraint firstItem="stw-Ke-bxb" firstAttribute="centerY" secondItem="G42-3Q-EYZ" secondAttribute="centerY" id="UQb-Mj-zxg"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gF3-u2-tRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -25,4 +35,7 @@
             <point key="canvasLocation" x="659" y="511"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TopcoderLogo" width="52" height="29"/>
+    </resources>
 </document>

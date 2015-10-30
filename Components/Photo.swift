@@ -4,7 +4,7 @@ import Foundation
 import UIKit
 
 
-// This is a class, so that photos can be passed around by reference
+// This is a class by design and not a struct, so that photos can be passed around by reference
 class Photo: NSObject {
     
     var image: UIImage
