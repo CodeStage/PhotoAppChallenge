@@ -11,9 +11,8 @@
       "scale" : "3x"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "GalleryIcon80-1.png",
+      "size" : "40x40",
       "scale" : "2x"
     },
     {
@@ -44,15 +43,13 @@
       "scale" : "2x"
     },
     {
-      "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "GalleryIcon40.png",
+      "size" : "40x40",
       "scale" : "1x"
     },
     {
-      "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "GalleryIcon80-2.png",
+      "size" : "40x40",
       "scale" : "2x"
     },
     {
