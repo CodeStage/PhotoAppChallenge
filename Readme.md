@@ -1,6 +1,8 @@
 
 # Topcoder Macoun - iOS Photo App Challenge
 
+This is a demo app I created for a challenge. It's very simple and can only display a collection of photos an iPhones, iPads, Apple Watch and Apple TV.
+
 The project contains only low-res stock photos and cannot access the camera roll, so it's best to demo on an iPhone 4S. It will run properly on watchOS, tvOS and iOS - supporting all iPad and iPhones running iOS 9.1. You need Xcode 7.1 to build and run it.
 
 The stock photos are from <http://www.gratisography.com/terms.html> released under [Creative Commons Zero](http://creativecommons.org/publicdomain/zero/1.0/). The project does not contain third party frameworks or code.
