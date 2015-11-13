@@ -1,7 +1,7 @@
 
 # iOS Photo App Challenge
 
-This is a demo app I created for a challenge. It's very simple and can only display a collection of photos an iPhones, iPads, Apple Watch and Apple TV.
+This is a demo app I created for a challenge. It's very simple and can only display a collection of photos on iPhones, iPads, Apple Watch and Apple TV.
 
 The project contains only low-res stock photos and cannot access the camera roll, so it's best to demo on an iPhone 4S. It will run properly on watchOS, tvOS and iOS - supporting all iPad and iPhones running iOS 9.1. You need Xcode 7.1 to build and run it.
 
