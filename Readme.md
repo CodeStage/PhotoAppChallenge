@@ -1,5 +1,5 @@
 
-# Topcoder Macoun - iOS Photo App Challenge
+# iOS Photo App Challenge
 
 This is a demo app I created for a challenge. It's very simple and can only display a collection of photos an iPhones, iPads, Apple Watch and Apple TV.
 
